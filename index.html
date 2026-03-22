@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" data-fr="Colmo — Conseil en stratégie de données et ingénierie, spécialiste de la commande publique" data-en="Colmo — Data strategy consulting and engineering, public procurement specialist">
+  <title data-fr="Colmo — Stratégie, ingénierie et analyse de données" data-en="Colmo — Data strategy, engineering and analytics">Colmo — Stratégie, ingénierie et analyse de données</title>
+  <link rel="icon" href="assets/logoCM.png">
+  <link rel="apple-touch-icon" href="assets/logoCM.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo-link">
+        <img src="assets/logoCM.png" alt="Colmo" class="logo-img">
+        <span class="logo-text">COLMO</span>
+      </a>
+      <nav class="lang-toggle" aria-label="Language selection">
+        <button class="lang-btn active" onclick="setLang('fr')" aria-label="Français">FR</button>
+        <span aria-hidden="true">|</span>
+        <button class="lang-btn" onclick="setLang('en')" aria-label="English">EN</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1 data-fr="Stratégie, ingénierie et analyse de données" data-en="Data strategy, engineering and analytics">Stratégie, ingénierie et analyse de données</h1>
+        <p data-fr="Spécialiste de la commande publique" data-en="Public procurement specialist">Spécialiste de la commande publique</p>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <h2 data-fr="Conseil et développement" data-en="Consulting and development">Conseil et développement</h2>
+        <ul>
+          <li data-fr="Conseil et accompagnement dans votre stratégie Open Data" data-en="Open Data strategy consulting and support">Conseil et accompagnement dans votre stratégie Open Data</li>
+          <li data-fr="Cartographie et valorisation de vos données" data-en="Data mapping and enhancement">Cartographie et valorisation de vos données</li>
+          <li data-fr="Conception et développement de traitements de données et d'API" data-en="Data processing and API design and development">Conception et développement de traitements de données et d'API</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="container">
+        <h2 data-fr="Données de la commande publique" data-en="Public procurement data">Données de la commande publique</h2>
+        <ul>
+          <li data-fr="Exploitation des données de la commande publique pour un objectif d'impact économique, sociale ou environnemental" data-en="Leveraging public procurement data for economic, social, or environmental impact">Exploitation des données de la commande publique pour un objectif d'impact économique, sociale ou environnemental</li>
+          <li data-fr="Agrégation de données" data-en="Data aggregation">Agrégation de données</li>
+          <li data-fr="Conception et développement de tableaux de bord et d'alertes sur mesure" data-en="Custom dashboard and alert design and development">Conception et développement de tableaux de bord et d'alertes sur mesure</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+        <div class="contact-links">
+          <a href="mailto:colin@colmo.tech">colin@colmo.tech</a>
+          <a href="https://www.linkedin.com/in/colinmaudry/" target="_blank" rel="noopener" aria-label="LinkedIn — Colin Maudry">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© 2026 SAS Colmo</span>
+      <a href="mentions-legales.html" data-fr="Mentions légales" data-en="Legal notice">Mentions légales</a>
+    </div>
+  </footer>
+
+  <script>
+    function detectLang() {
+      var saved = localStorage.getItem('lang');
+      if (saved) return saved;
+      var langs = navigator.languages || [navigator.language];
+      for (var i = 0; i < langs.length; i++) {
+        if (langs[i].toLowerCase().startsWith('fr')) return 'fr';
+      }
+      return 'en';
+    }
+
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang', lang);
+
+      document.querySelectorAll('[data-fr]').forEach(function(el) {
+        var text = el.getAttribute('data-' + lang);
+        if (el.tagName === 'META') {
+          el.setAttribute('content', text);
+        } else if (el.tagName === 'TITLE') {
+          document.title = text;
+        } else {
+          el.textContent = text;
+        }
+      });
+
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+    }
+
+    setLang(detectLang());
+  </script>
+</body>
+</html>
